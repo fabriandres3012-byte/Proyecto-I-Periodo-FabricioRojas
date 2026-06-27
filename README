@@ -1,0 +1,82 @@
+PROYECTO: GESTOR DE CONTACTOS WEB
+Autor: Fabricio Rojas Torres
+
+Descripción:
+una agenda de contactos donde permite gestionar contactos, que agregamos,actualizamos y borramos.
+Mediante el modelo Flask 
+proyecto_Fabricio_Rojas/
+├── app.py
+├── contactos.xlsx
+├── README.txt
+├── templates/
+│   ├── login.html
+│   ├── menu.html
+│   └── ...
+└── static/
+    ├── css/
+    ├── js/
+    └── img/
+Se usa como base de datos la libreria openpyxl para guardar los contactos, actualizarlos y eliminarlos/
+
+Funciones principales:
+
+* Iniciar sesión con usuario y contraseña.
+* Agregar nuevos contactos.
+* Buscar contactos por nombre.
+* Editar información de contactos existentes.
+* Eliminar contactos.
+* Ordenar contactos alfabéticamente.
+* Marcar contactos como favoritos.
+* Asignar una categoría a cada contacto.
+* Generar un reporte con el total de contactos y favoritos.
+
+Tecnologías utilizadas:
+
+* Python
+* Flask
+* HTML
+* CSS
+* JavaScript
+* openpyxl
+
+Requisitos:
+
+* Python 3.10 o superior
+
+Instalación de librerías:
+
+pip install flask openpyxl
+
+Estructura del proyecto:
+
+ app.py
+ contactos.xlsx
+ templates/
+ static/
+
+
+Credenciales de acceso:
+
+Usuario: admin
+Contraseña: 1234
+
+Ejecución del proyecto:
+
+1. Abrir una terminal en la carpeta del proyecto.
+2. Instalar las librerías necesarias:
+
+pip install flask openpyxl
+
+3. Ejecutar la aplicación:
+
+python app.py
+
+4. Abrir el navegador y acceder a la dirección mostrada en la terminal, generalmente:
+
+http://127.0.0.1:5000
+
+Notas:
+
+* El archivo contactos.xlsx funciona como base de datos.
+* La manipulación del archivo Excel se realiza exclusivamente con openpyxl.
+* El proyecto incluye contactos de prueba para facilitar su evaluación.
