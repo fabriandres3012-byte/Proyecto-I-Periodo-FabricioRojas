@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Reporte de Contactos</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+</head>
+
+<body>
+  <!-- Página de reporte que muestra totales y favoritos. -->
+  <div class="menu-container">
+
+    <div class="menu-box">
+      <h2 class="floating-title">Reporte</h2>
+      <p class="info-text">Resumen actualizado de tus contactos y los marcados como favoritos.</p>
+
+      <div class="report-card">
+        <div class="stat-block">
+          <span class="stat-label">Contactos</span>
+          <strong>{{ total_contactos }}</strong>
+        </div>
+        <div class="stat-block">
+          <span class="stat-label">Favoritos</span>
+          <strong>{{ favoritos }}</strong>
+        </div>
+      </div>
+
+      <div class="menu-actions">
+        <a href="{{ url_for('menu') }}" class="btn-action sort">Volver al menú</a>
+        <a href="{{ url_for('add_contact') }}" class="btn-action add">Agregar contacto</a>
+      </div>
+    </div>
+
+    <div class="detail-box">
+      <h2>Información del reporte</h2>
+      <p class="info-text"> en este reservado podras ver el reporte sobre la cantidad de contactos en total y tus favoritos, esperamos ayudarte 😁</p>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span>Total de contactos</span>
+          <strong>{{ total_contactos }}</strong>
+        </div>
+        <div class="stat-card">
+          <span>Contactos favoritos</span>
+          <strong>{{ favoritos }}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+</body>
+</html>

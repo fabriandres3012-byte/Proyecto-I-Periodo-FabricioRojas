@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agregar Contacto</title>
+
+  <link rel="stylesheet"
+    href="{{ url_for('static', filename='css/menu_agregar.css')}}">
+      
+    <!-- Fuente de letra -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Nunito:wght@400;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Formulario para agregar un nuevo contacto. -->
+  <div class="form-container">
+
+    <div class="form-box">
+
+      <!-- Botón cerrar -->
+      <a href="{{ url_for('menu') }}"
+        id="close-modal"
+        class="close-btn">
+        ✖
+      </a>
+
+      <h3>Agregar Nuevo Contacto</h3>
+
+      <form
+        action="{{ url_for('save_contact') }}"
+        method="POST"
+        id="contact-form"
+      >
+
+        <!-- Nombre -->
+        <label>Nombre completo</label>
+        <input
+          type="text"
+          name="nombre"
+          placeholder="Ej: Mario Rojas Torres"
+          required
+        >
+
+        <!-- Teléfono -->
+        <label>Teléfono</label>
+
+        <input
+          type="text"
+          name="telefono"
+          id="telefono"
+          placeholder="Ej: 88888888"
+          maxlength="8"
+          pattern="[0-9]{8}"
+          inputmode="numeric"
+          required
+        >
+
+        <small
+          id="telefono-error"
+          class="error-msg"
+          style="display:none;"
+        >
+          El número debe tener exactamente 8 dígitos.
+        </small>
+
+        <!-- Correo -->
+        <label>Correo</label>
+
+        <input
+          type="email"
+          name="correo"
+          placeholder="Ej: fabri@gmail.com"
+          required
+        >
+
+        <!-- Dirección -->
+        <label>Dirección</label>
+
+        <input
+          type="text"
+          name="direccion"
+          placeholder="Ej: San José, Costa Rica"
+          required
+        >
+
+        <!-- Nota -->
+        <label>Nota</label>
+
+        <textarea
+          name="nota"
+          placeholder="Ej: Datos importantes"
+          rows="3"
+        ></textarea>
+
+        <!-- Categoría -->
+        <label>Categoría</label>
+        <select name="categoria" required>
+          <option value="" disabled selected>Selecciona una categoría</option>
+          <option value="Familia">Familia</option>
+          <option value="Amigo">Amigo</option>
+          <option value="Trabajo">Trabajo</option>
+          <option value="Otros">Otros</option>
+        </select>
+
+        <!-- Favorito -->
+        <div class="favorito-row">
+
+          <input
+            type="checkbox"
+            name="favorito"
+            value="Sí"
+            id="favorito"
+          >
+
+          <label for="favorito">
+            Marcar como favorito ⭐
+          </label>
+
+        </div>
+
+        <button
+          type="submit"
+          class="btn-listo"
+        >
+          Guardar
+        </button>
+
+      </form>
+
+    </div>
+
+  </div>
+  <script src="{{ url_for('static', filename='js/agregar.js') }}"></script>
+
+</body>
+</html>

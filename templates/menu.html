@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Menú - Konekxion</title>
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='css/menu.css') }}">
+</head>
+
+<body>
+
+  <!-- Página principal del menú de contactos. -->
+  <div class="menu-container">
+
+<!-- PANEL IZQUIERDO -->
+  <div class="menu-box">
+    <h2 class="floating-title">
+      Contactos
+    </h2>
+    <!-- BUSCADOR -->
+    <input
+      type="text"
+      id="search-input"
+      class="search-bar"
+      placeholder="Buscar contacto..."
+     >
+    <div class="filter-row">
+      <button type="button" class="filter-btn active" data-filter-category="Todos">Todos</button>
+      <button type="button" class="filter-btn" data-filter-category="Familia">Familia</button>
+      <button type="button" class="filter-btn" data-filter-category="Amigo">Amigo</button>
+      <button type="button" class="filter-btn" data-filter-category="Trabajo">Trabajo</button>
+      <button type="button" class="filter-btn" data-filter-category="Otros">Otros</button>
+      <button type="button" id="favorite-filter" class="filter-btn favorite-btn">Favoritos</button>
+    </div>
+   <!-- LISTA DE CONTACTOS -->
+    <div
+      id="contact-list"
+      class="contact-list"
+      >
+      {% for contacto in contactos %}
+     <div
+      class="contact-item"
+      data-row="{{ loop.index + 1 }}"
+      data-nombre="{{ contacto.nombre }}"
+      data-telefono="{{ contacto.telefono }}"
+      data-correo="{{ contacto.correo }}"
+      data-direccion="{{ contacto.direccion }}"
+      data-nota="{{ contacto.nota }}"
+      data-categoria="{{ contacto.categoria }}"
+      data-favorito="{{ contacto.favorito }}"
+                >
+    <input
+    type="checkbox"
+    class="delete-checkbox"
+    style="display:none;"
+     >
+         <!-- NOMBRE Y TELÉFONO -->
+    <span>
+            <!-- NOMBRE -->
+    {{ contacto.nombre }}
+       -
+    {{ contacto.telefono }}
+
+    {% if contacto.favorito == "Sí" %}
+       ⭐
+    {% endif %}
+    
+    ✅ <strong>Conectado</strong>
+   </span>
+
+   </div>
+
+    {% endfor %}
+
+     </div>
+
+   <!-- BOTONES -->
+    <div class="menu-actions">
+
+       <button
+        class="btn-action delete"
+       >
+        Eliminar
+       </button>
+        <a href="{{ url_for('add_contact') }}"
+     class="btn-action add">
+       Agregar contacto
+      </a>
+      <button class="btn-action sort">  Ordenar A-Z </button> </div> </div>
+        <!-- PANEL DERECHO -->
+        <div class="detail-box">  <h2>Información del contacto </h2>
+            <div
+                id="contact-detail"
+                class="contact-detail"
+            >
+                <p class="initial-text">
+                    Selecciona un contacto para ver su información
+                </p>
+            </div>
+            <!-- BOTÓN ACTUALIZAR -->
+            <button
+                id="update-btn"
+                class="btn-action add"
+                style="display:none; margin-top:20px;"
+            >
+                Actualizar contacto
+            </button>
+            <!-- BOTÓN IMPRIMIR REPORTE -->
+            <button
+                id="report-btn"
+                class="btn-action add"
+                style="margin-top:20px;"
+            >
+                Imprimir reporte
+            </button>
+        </div>
+    </div>
+
+    <script
+        src="{{ url_for('static', filename='js/menu.js') }}">
+    </script>
+
+</body>
+
+</html>

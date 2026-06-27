@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Actualizar Contacto</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}">
+</head>
+
+<body>
+  <!-- Página para actualizar la información de un contacto existente. -->
+  <style>
+    .estado-info { color: #28a745; font-weight: bold; }
+  </style>
+  <div class="menu-container">
+
+    <div class="menu-box">
+      <h2 class="floating-title">Actualizar</h2>
+      <p class="info-text">Edita los datos del contacto seleccionado y guarda los cambios.</p>
+          <!-- Información del contacto -->
+      <div class="report-card">
+        <p><strong>Nombre:</strong> {{ contacto.nombre }}</p>
+        <p><strong>Teléfono:</strong> {{ contacto.telefono }}</p>
+        <p><strong>Correo:</strong> {{ contacto.correo }}</p>
+        <p><strong>Categoría:</strong> {{ contacto.categoria }}</p>
+        <p><strong>Favorito:</strong> {{ contacto.favorito }}</p>
+      </div>
+          <!-- Botón de vuelta -->
+      <a href="{{ url_for('menu') }}" class="btn-action sort">Volver al menú</a>
+    </div>
+
+        <!-- Formulario de actualización -->
+    <div class="detail-box">
+      <h2>Formulario de actualización</h2>
+      <form id="update-form" action="{{ url_for('update_contact') }}" method="POST">
+
+        <input type="hidden" name="old_nombre" value="{{ contacto.nombre }}">
+
+        <div class="form-row">
+          <label>Nombre completo</label>
+          <input type="text" name="nombre" value="{{ contacto.nombre }}" required>
+        </div>
+
+        <div class="form-row">
+          <label>Teléfono</label>
+          <input type="text" name="telefono" value="{{ contacto.telefono }}" maxlength="8" pattern="[0-9]{8}" required>
+        </div>
+
+        <div class="form-row">
+          <label>Correo</label>
+          <input type="email" name="correo" value="{{ contacto.correo }}" required>
+        </div>
+
+        <div class="form-row">
+          <label>Dirección</label>
+          <input type="text" name="direccion" value="{{ contacto.direccion }}" required>
+        </div>
+
+        <div class="form-row">
+          <label>Nota</label>
+          <textarea name="nota" rows="4">{{ contacto.nota }}</textarea>
+        </div>
+
+            <!-- Categoría -->
+        <div class="form-row">
+          <label>Categoría</label>
+          <select name="categoria" required>
+            <option value="Familia" {% if contacto.categoria == 'Familia' %}selected{% endif %}>Familia</option>
+            <option value="Amigo" {% if contacto.categoria == 'Amigo' %}selected{% endif %}>Amigo</option>
+            <option value="Trabajo" {% if contacto.categoria == 'Trabajo' %}selected{% endif %}>Trabajo</option>
+            <option value="Otros" {% if contacto.categoria == 'Otros' %}selected{% endif %}>Otros</option>
+          </select>
+        </div>
+
+            <!-- Favorito -->
+        <div class="form-row">
+          <label class="favorito-row">
+            <input type="checkbox" name="favorito" value="Sí" {% if contacto.favorito == 'Sí' %}checked{% endif %}>
+            Marcar como favorito ⭐
+          </label>
+        </div>
+
+        <button type="submit" class="btn-action add">Guardar cambios</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+</body>
+</html>
